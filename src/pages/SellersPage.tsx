@@ -1,10 +1,13 @@
 import React from "react";
-import { MessageList } from "../components/MessageList";
-import { MessageSubmit } from "../components/MessageSubmit";
+import { SellerList } from "../components/SellerList";
+import { SellerSubmit } from "../components/SellerSubmit";
 export function SellersPage(){
     return (
     <>
-    <MessageList></MessageList>
-    <MessageSubmit></MessageSubmit></>
+    <SellerList></SellerList>
+    <SellerSubmit></SellerSubmit>
+        <br></br>
+        <br></br>
+    </>
         )
 }

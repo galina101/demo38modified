@@ -1,19 +1,22 @@
 import React, {useEffect, useRef, useState} from "react";
-import { Message } from "../models/Message";
-import { getAllMessagesAPI } from "../services/MessageAPIService";
+import { Seller } from "../models/Seller";
+import { getAllSellersAPI } from "../services/SellerAPIService";
 import { json } from "stream/consumers";
-import { SingleMessage } from "./SingleMessage";
+import { SingleSeller } from "./SingleSeller";
 
-export function MessageList(){
-    const [allMessages, setAllMessages] = useState<Message[]>([])
+export function SellerList(){
+    const [allSellers, setAllSellers] = useState<Seller[]>([])
     const webSocket = useRef<WebSocket | null>(null);
 
     useEffect(()=>{
-        getAllMessagesAPI()
+        getAllSellersAPI()
         .then(response=>{return response.json()})
         .then(json=>{
-            setAllMessages(json);
-        });
+            setAllSellers(json);
+        })
+            .catch(error=> {
+                console.error('There was a problem with your fetch operation:'+ error.message);
+            });
     }, []);
 
 
@@ -35,6 +38,6 @@ export function MessageList(){
     }, []);*/
 
     return (<>
-    {allMessages.map(message =>{return <SingleMessage key={message.message_id} data={message}></SingleMessage>})}
+    {allSellers.map(seller =>{return <SingleSeller key={seller.sellerId} data={seller}></SingleSeller>})}
     </>)
 }

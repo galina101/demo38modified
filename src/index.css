@@ -8,6 +8,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/*Cannot follow through with Tailwind installation:
+https://tailwindcss.com/docs/installation
+ */
 
 body {
   margin: 0;

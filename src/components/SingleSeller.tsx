@@ -1,27 +1,23 @@
 import React, { useContext } from "react";
-import { Message } from "../models/Message";
+import { Seller } from "../models/Seller";
 import { UserContext } from "../App";
 interface propsInterface {
-    data:Message
+    data:Seller
 }
-export function SingleMessage(props:propsInterface){
+export function SingleSeller(props:propsInterface){
     const valueFromContext = useContext(UserContext)
     return (
         <table className="message-table">
             <thead>
             <tr>
-                <th>Message ID</th>
-                <th>Time Posted</th>
-                <th>Message Text</th>
-                <th>Posted By</th>
+                <th>Seller ID</th>
+                <th>Seller Name</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td>{props.data.message_id}</td>
-                <td>{props.data.time_posted_epoch}</td>
-                <td>{props.data.message_text}</td>
-                <td>{props.data.posted_by}</td>
+                <td>{props.data.sellerId}</td>
+                <td>{props.data.sellerName}</td>
             </tr>
             </tbody>
         </table>

@@ -6,9 +6,11 @@ export function Navbar(){
 
     return (
         <>
+            <br></br>
             <button onClick={toggleTheme}>
-            Switch to {theme === 'light' ? 'dark' : 'light'} mode
+                Switch to {theme === 'light' ? 'dark' : 'light'} mode
             </button>
+            <br></br>
             <br></br>
             <Link to='products'>Products page</Link>
             <br></br>
