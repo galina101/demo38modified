@@ -1,25 +1,31 @@
 import React, { createContext } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { MessagesPage } from './pages/MessagesPage';
+import { ProductsPage } from './pages/ProductsPage';
+import { SellersPage } from './pages/SellersPage';
 import { PageNotFoundPage } from './pages/PageNotFoundPage';
 import { Navbar } from './components/Navbar';
+import {LandingPage} from "./pages/LandingPage";
+import {ThemeProvider} from "./ThemeContext";
 
 export const UserContext = createContext("none")
 function App() {
   return (
+      <ThemeProvider>
     <div className="App">
       <UserContext.Provider value = "user1">
       <BrowserRouter>
       <Navbar></Navbar>
       <Routes>
-        <Route path='messages' element={<MessagesPage></MessagesPage>} />
+        <Route path='products' element={<ProductsPage></ProductsPage>} />
+          <Route path='sellers' element={<SellersPage></SellersPage>} />
+          <Route path='landing' element={<LandingPage></LandingPage>} />
         <Route path='*' element={<PageNotFoundPage></PageNotFoundPage>}/>
         </Routes>
         </BrowserRouter>
         </UserContext.Provider>
     </div>
+      </ThemeProvider>
   );
 }
 

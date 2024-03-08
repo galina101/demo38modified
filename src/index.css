@@ -1,3 +1,14 @@
+/*Adding the tailwindcss styles*/
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/*Adding the tailwindcss styles*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,7 +18,57 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/*Dark mode settings*/
+:root {
+  --color-background: white;
+  --color-text: black;
+}
+
+body[data-theme='dark'] {
+  --color-background: black;
+  --color-text: white;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+/*End of Dark mode settings*/
+
+/*Format the table*/
+.message-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.message-table th, .message-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.message-table th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.message-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/*End of format the table
+ */
+
+
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+img {
+  object-fit: cover;
+  width: 100%;
+  height: 600px;
 }
