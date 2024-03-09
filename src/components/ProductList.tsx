@@ -1,43 +1,48 @@
 import React, {useEffect, useRef, useState} from "react";
-import { Seller } from "../models/Seller";
-import { getAllSellersAPI } from "../services/SellerAPIService";
-import { json } from "stream/consumers";
-import { SingleSeller } from "./SingleSeller";
+import { Product } from "../models/Product";
+import { SingleProduct } from "./SingleProduct";
+import {getAllProductsAPI} from "../services/ProductAPIService";
 
-export function SellerList(){
-    const [allSellers, setAllSellers] = useState<Seller[]>([])
+interface ProductListProps {
+    allProducts: Product[];
+    updateAllProducts: (newProducts: Product[]) => void;
+}
+
+export function ProductList({allProducts, updateAllProducts}: ProductListProps){
     const webSocket = useRef<WebSocket | null>(null);
 
     useEffect(()=>{
-        getAllSellersAPI()
-        .then(response=>{return response.json()})
-        .then(json=>{
-            setAllSellers(json);
-        })
+        getAllProductsAPI()
+            .then(response=>{return response.json()})
+            .then(json=>{
+                updateAllProducts(json);
+            })
             .catch(error=> {
                 console.error('There was a problem with your fetch operation:'+ error.message);
             });
     }, []);
 
 
+
     //This code can be used to refresh the messages every 5 seconds
-   /* useEffect(() => {
-        // Replace 'ws://localhost:8080' with your WebSocket server URL
-        webSocket.current = new WebSocket('ws://localhost:8080');
+    /*    useEffect(() => {
+            // Replace 'ws://localhost:8080' with your WebSocket server URL
+            webSocket.current = new WebSocket('ws://localhost:9005');
 
-        webSocket.current.onmessage = (message) => {
-            const newMessage = JSON.parse(message.data);
-            setAllMessages((prevMessages) => [...prevMessages, newMessage]);
-        };
+            webSocket.current.onmessage = (seller) => {
+                const newMessage = JSON.parse(seller.data);
+                setAllSellers((prevMessages) => [...prevMessages, newMessage]);
+            };
 
-        return () => {
-            if (webSocket.current) {
-                webSocket.current.close();
-            }
-        };
-    }, []);*/
+            return () => {
+                if (webSocket.current) {
+                    webSocket.current.close();
+                }
+            };
+        }, []);*/
 
     return (<>
-    {allSellers.map(seller =>{return <SingleSeller key={seller.sellerId} data={seller}></SingleSeller>})}
+        {allProducts.map(product =>{
+            return <SingleProduct key={product.productId} data={product}></SingleProduct>})}
     </>)
 }

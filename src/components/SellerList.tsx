@@ -2,7 +2,6 @@ import React, {useEffect, useRef, useState} from "react";
 import { Seller } from "../models/Seller";
 import { getAllSellersAPI } from "../services/SellerAPIService";
 import { SingleSeller } from "./SingleSeller";
-import {SellerSubmit} from "./SellerSubmit";
 
 interface SellerListProps {
     allSellers: Seller[];
@@ -44,6 +43,5 @@ export function SellerList({allSellers, updateAllSellers}: SellerListProps){
 
     return (<>
     {allSellers.map(seller =>{return <SingleSeller key={seller.sellerId} data={seller}></SingleSeller>})}
-        {/*<SellerSubmit updateAllSellers={updateAllSellers} />*/}
     </>)
 }

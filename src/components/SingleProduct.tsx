@@ -1,23 +1,27 @@
 import React, { useContext } from "react";
-import { Seller } from "../models/Seller";
+import { Product } from "../models/Product";
 import { UserContext } from "../App";
 interface propsInterface {
-    data:Seller
+    data:Product
 }
-export function SingleSeller(props:propsInterface){
+export function SingleProduct(props:propsInterface){
     const valueFromContext = useContext(UserContext)
     return (
         <table className="seller-table">
             <thead>
             <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Product Price</th>
                 <th>Seller ID</th>
-                <th>Seller Name</th>
             </tr>
             </thead>
             <tbody>
             <tr>
+                <td>{props.data.productId}</td>
+                <td>{props.data.productName}</td>
+                <td>{props.data.productPrice}</td>
                 <td>{props.data.sellerId}</td>
-                <td>{props.data.sellerName}</td>
             </tr>
             </tbody>
         </table>

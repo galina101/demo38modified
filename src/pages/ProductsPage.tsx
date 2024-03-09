@@ -1,17 +1,17 @@
 import React from "react";
-import { SellerList } from "../components/SellerList";
-import { SellerSubmit } from "../components/SellerSubmit";
-import {Seller} from "../models/Seller";
+import { ProductList } from "../components/ProductList";
+import { ProductSubmit } from "../components/ProductSubmit";
+import {Product} from "../models/Product";
 export function ProductsPage(){
-   const [allSellers, setAllSellers] = React.useState<Seller[]>([]);
+   const [allProducts, setAllProducts] = React.useState<Product[]>([]);
 
-   function updateAllSellers(newSellers: Seller[]) {
-       setAllSellers(newSellers);
+   function updateAllProducts(newProducts: Product[]) {
+       setAllProducts(newProducts);
    }
 
     return (
     <>
-    <SellerList allSellers={allSellers} updateAllSellers={updateAllSellers}></SellerList>
-    <SellerSubmit updateAllSellers={updateAllSellers}></SellerSubmit></>
+    <ProductList allProducts={allProducts} updateAllProducts={updateAllProducts}></ProductList>
+    <ProductSubmit updateAllProducts={updateAllProducts}></ProductSubmit></>
         )
 }

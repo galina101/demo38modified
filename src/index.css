@@ -12,6 +12,9 @@
 https://tailwindcss.com/docs/installation
  */
 
+.product-submit{
+  text-align:left;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -39,24 +42,24 @@ body {
 /*End of Dark mode settings*/
 
 /*Format the table*/
-.message-table {
+.seller-table {
   width: 100%;
   border-collapse: collapse;
   margin: 20px 0;
 }
 
-.message-table th, .message-table td {
+.seller-table th, .seller-table td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
 }
 
-.message-table th {
+.seller-table th {
   background-color: #4CAF50;
   color: white;
 }
 
-.message-table tr:nth-child(even) {
+.seller-table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
