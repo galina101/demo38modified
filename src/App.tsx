@@ -17,10 +17,10 @@ function App() {
       <BrowserRouter>
       <Navbar></Navbar>
       <Routes>
+        <Route path='*' element={<LandingPage></LandingPage>} />
         <Route path='products' element={<ProductsPage></ProductsPage>} />
           <Route path='sellers' element={<SellersPage></SellersPage>} />
-          <Route path='landing' element={<LandingPage></LandingPage>} />
-        <Route path='*' element={<PageNotFoundPage></PageNotFoundPage>}/>
+        {/*<Route path='*' element={<PageNotFoundPage></PageNotFoundPage>}/>*/}
         </Routes>
         </BrowserRouter>
         </UserContext.Provider>

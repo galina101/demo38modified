@@ -1,23 +1,28 @@
 import React, {useEffect, useRef, useState} from "react";
 import { Seller } from "../models/Seller";
 import { getAllSellersAPI } from "../services/SellerAPIService";
-import { json } from "stream/consumers";
 import { SingleSeller } from "./SingleSeller";
+import {SellerSubmit} from "./SellerSubmit";
 
-export function SellerList(){
-    const [allSellers, setAllSellers] = useState<Seller[]>([])
+interface SellerListProps {
+    allSellers: Seller[];
+    updateAllSellers: (newSellers: Seller[]) => void;
+}
+
+export function SellerList({allSellers, updateAllSellers}: SellerListProps){
     const webSocket = useRef<WebSocket | null>(null);
 
     useEffect(()=>{
         getAllSellersAPI()
         .then(response=>{return response.json()})
         .then(json=>{
-            setAllSellers(json);
+            updateAllSellers(json);
         })
             .catch(error=> {
                 console.error('There was a problem with your fetch operation:'+ error.message);
             });
     }, []);
+
 
 
     //This code can be used to refresh the messages every 5 seconds
@@ -39,5 +44,6 @@ export function SellerList(){
 
     return (<>
     {allSellers.map(seller =>{return <SingleSeller key={seller.sellerId} data={seller}></SingleSeller>})}
+        {/*<SellerSubmit updateAllSellers={updateAllSellers} />*/}
     </>)
 }

@@ -1,7 +1,11 @@
 import React, {FormEvent, SyntheticEvent, useState} from "react";
 import { Seller } from "../models/Seller";
 import {getAllSellersAPI, postSeller} from "../services/SellerAPIService";
-export function SellerSubmit(){
+
+interface SellerSubmitProps{
+    updateAllSellers: (newSellers:Seller[])=>void;
+}
+export function SellerSubmit({updateAllSellers}:SellerSubmitProps){
     const [userInput, setUserInput] = useState<string>("")
     function userInputHandler(event:SyntheticEvent){
         let textBox = event.target as HTMLTextAreaElement;
@@ -14,7 +18,10 @@ export function SellerSubmit(){
         }
         await postSeller(seller);
         //wait for the post to complete, then refresh the list
-        await getAllSellersAPI();
+        const response =await getAllSellersAPI();
+        const updatedSellers = await response.json();
+        updateAllSellers(updatedSellers);
+        //await getAllSellersAPI();
     }
     function formSubmitHandler(event: FormEvent){
         event.preventDefault();
@@ -24,8 +31,8 @@ export function SellerSubmit(){
     return (<>
     <h1>Submit a new seller</h1>
         <form onSubmit={formSubmitHandler}>
-    <input onChange={userInputHandler} value={userInput}></input>
-    <button onClick={buttonClickHandler}>submit</button>
+            <input onChange={userInputHandler} value={userInput}></input>
+            <button type="submit">Add</button>
         </form>
     </>)
 }
