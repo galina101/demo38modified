@@ -17,3 +17,11 @@ export function postSeller(data:Seller){
     headers:{"Content-Type":"application/json"},
     body:JSON.stringify(data)});
 }
+
+export function updateSeller(data:Seller){
+    return fetch(apiBaseURL + "seller",
+        {method:"PUT",
+            mode:"cors",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(data)});
+}

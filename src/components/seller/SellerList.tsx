@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
-import { Seller } from "../models/Seller";
-import { getAllSellersAPI } from "../services/SellerAPIService";
+import { Seller } from "../../models/Seller";
+import { getAllSellersAPI } from "../../services/SellerAPIService";
 import { SingleSeller } from "./SingleSeller";
 
 interface SellerListProps {

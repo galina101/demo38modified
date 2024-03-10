@@ -1,7 +1,7 @@
 import React from "react";
 import {Seller} from "../models/Seller";
-import { SellerList } from "../components/SellerList";
-import { SellerSubmit } from "../components/SellerSubmit";
+import { SellerList } from "../components/seller/SellerList";
+import { SellerSubmit } from "../components/seller/SellerSubmit";
 export function SellersPage(){
     const [allSellers, setAllSellers] = React.useState<Seller[]>([]);
 

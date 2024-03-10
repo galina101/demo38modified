@@ -1,14 +1,15 @@
 import React, {useEffect, useRef, useState} from "react";
-import { Product } from "../models/Product";
+import { Product } from "../../models/Product";
 import { SingleProduct } from "./SingleProduct";
-import {getAllProductsAPI} from "../services/ProductAPIService";
+import {getAllProductsAPI} from "../../services/ProductAPIService";
 
 interface ProductListProps {
     allProducts: Product[];
     updateAllProducts: (newProducts: Product[]) => void;
+    toggleUpdate: () => void;
 }
 
-export function ProductList({allProducts, updateAllProducts}: ProductListProps){
+export function ProductList({allProducts, updateAllProducts, toggleUpdate}: ProductListProps){
     const webSocket = useRef<WebSocket | null>(null);
 
     useEffect(()=>{
@@ -43,6 +44,6 @@ export function ProductList({allProducts, updateAllProducts}: ProductListProps){
 
     return (<>
         {allProducts.map(product =>{
-            return <SingleProduct key={product.productId} data={product}></SingleProduct>})}
+            return <SingleProduct product={product} updateAllProducts={updateAllProducts} toggleUpdate={toggleUpdate} key={product.productId} data={product}></SingleProduct>})}
     </>)
 }

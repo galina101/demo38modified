@@ -1,18 +1,22 @@
-import React, {FormEvent, SyntheticEvent, useState} from "react";
-import { Product } from "../models/Product";
-import {getAllProductsAPI, postProduct} from "../services/ProductAPIService";
+import React, {FormEvent, useState} from "react";
+import { Product } from "../../models/Product";
+import {getAllProductsAPI, putProduct} from "../../services/ProductAPIService";
 
 interface ProductSubmitProps{
     updateAllProducts: (newProducts:Product[])=>void;
 }
-export function ProductSubmit({updateAllProducts}:ProductSubmitProps){
+export function ProductUpdate({updateAllProducts}:ProductSubmitProps){
     const [name, setName] = useState<string>("");
     const [price, setPrice] = useState<number>(0);
     const [sellerId, setSellerId] = useState<number>(0);
+    const [productId, setId] = useState<number>(0);
 
     function userInputHandler(event:React.ChangeEvent<HTMLInputElement>) {
         let textBox = event.target.value;
         switch (event.target.name) {
+            case 'productId':
+                setId (Number(textBox));
+                break;
             case'name':
                 setName(textBox);
                 break;
@@ -28,14 +32,14 @@ export function ProductSubmit({updateAllProducts}:ProductSubmitProps){
     }
     async function buttonClickHandler(){
         let product : Product = {
-            productId:1,
+            productId:productId,
             productName:name,
-            productPrice:price,
+            price:price,
             sellerId:sellerId
         }
-        await postProduct(product);
+        await putProduct(product);
         //wait for the post to complete, then refresh the list
-        const response =await getAllProductsAPI();
+        const response = await getAllProductsAPI();
         const updatedProducts = await response.json();
         updateAllProducts(updatedProducts);
     }
@@ -45,22 +49,26 @@ export function ProductSubmit({updateAllProducts}:ProductSubmitProps){
     }
     
     return (<>
-    <div className={"product-submit"}>
-        <h1>Submit a new product</h1>
+    <div className={"product-update"}>
+        <h1>Update a product</h1>
         <form onSubmit={formSubmitHandler}>
+            <label>Product ID:
+                <input type="text" name="productId" onChange={userInputHandler} value={productId}></input>
+            </label>
+            <br></br>
             <label>Product Name:
                 <input type="text" name="name" onChange={userInputHandler} value={name}></input>
             </label>
             <br></br>
             <label>Product Price:
-                <input type="text" name="price" onChange={userInputHandler} value={price}></input>
+                <input type="text" name="price" onChange={userInputHandler} value={price.toFixed(2)}></input>
             </label>
             <br></br>
             <label>Seller ID:
                 <input type="text" name="sellerId" onChange={userInputHandler} value={sellerId}></input>
             </label>
             <br></br>
-            <button type="submit">Add</button>
+            <button type="submit">Update</button>
         </form>
     </div>
     </>)

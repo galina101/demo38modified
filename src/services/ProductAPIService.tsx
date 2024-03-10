@@ -11,9 +11,38 @@ export function getAllProductsAPI(){
         })
 }
 export function postProduct(data:Product){
-    return fetch(apiBaseURL + "product",
+    console.log(data);
+    console.log(JSON.stringify(data));
+
+    return fetch(apiBaseURL + "product/",
     {method:"POST",
     mode:"cors",
     headers:{"Content-Type":"application/json"},
     body:JSON.stringify(data)});
+}
+
+export function putProduct(data:Product){
+    console.log(data);
+    console.log(JSON.stringify(data));
+
+    return fetch(apiBaseURL + "product/"+ data.productId,
+        {method:"PUT",
+            mode:"cors",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(data)});
+}
+export function deleteProduct(data:Product){
+    console.log(data);
+    console.log(JSON.stringify(data));
+
+
+
+    return fetch(apiBaseURL + "product/"+ data.productId,
+        {method:"DELETE",
+            mode:"cors",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(data)});
+
+
+
 }

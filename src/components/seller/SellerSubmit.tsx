@@ -1,6 +1,6 @@
 import React, {FormEvent, SyntheticEvent, useState} from "react";
-import { Seller } from "../models/Seller";
-import {getAllSellersAPI, postSeller} from "../services/SellerAPIService";
+import { Seller } from "../../models/Seller";
+import {getAllSellersAPI, postSeller} from "../../services/SellerAPIService";
 
 interface SellerSubmitProps{
     updateAllSellers: (newSellers:Seller[])=>void;
