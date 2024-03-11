@@ -11,8 +11,8 @@ export function SellersPage(){
 
     return (
     <>
+        <SellerSubmit updateAllSellers={updateAllSellers}></SellerSubmit>
     <SellerList allSellers={allSellers} updateAllSellers={updateAllSellers}></SellerList>
-    <SellerSubmit updateAllSellers={updateAllSellers}></SellerSubmit>
         <br></br>
         <br></br>
     </>
