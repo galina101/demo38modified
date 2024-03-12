@@ -32,12 +32,8 @@ export function SellerSubmit({updateAllSellers}:SellerSubmitProps){
         //wait for the post to complete, then refresh the list
         const response =await getAllSellersAPI();
         const updatedSellers = await response.json();
-        if (updatedSellers.length === 0) {
-            setError("No sellers found");
-        }else {
-            setError(null);
-            updateAllSellers(updatedSellers);
-        }
+        updateAllSellers(updatedSellers);
+
 
     }
 
@@ -48,10 +44,12 @@ export function SellerSubmit({updateAllSellers}:SellerSubmitProps){
     }
     
     return (<>
+        <div className={"create-seller-form"}>
     <h1>Create a new seller</h1>
         <form onSubmit={formSubmitHandler}>
             <input onChange={userInputHandler} value={userInput}></input>
             <button type="submit">Add</button>
         </form>
+        </div>
     </>)
 }

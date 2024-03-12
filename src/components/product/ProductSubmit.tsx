@@ -16,8 +16,14 @@ export function ProductSubmit({updateAllProducts}:ProductSubmitProps){
             case'name':
                 setName(textBox);
                 break;
-            case 'price':
-                setPrice(Number(textBox));
+            case'price':
+                let priceValue = Number(textBox);
+                if (isNaN(priceValue)||priceValue<0){
+                    //set to default value
+                    setPrice(0);
+                } else {
+                    setPrice(priceValue);
+                }
                 break;
                 case 'sellerId':
                 setSellerId(Number(textBox));
@@ -48,18 +54,18 @@ export function ProductSubmit({updateAllProducts}:ProductSubmitProps){
     
     return (<>
     <div className={"product-submit"}>
-        <h1>Submit a new product</h1>
+        <h1>Create a new product</h1>
         <form onSubmit={formSubmitHandler}>
             <label>Product Name:
                 <input type="text" name="name" onChange={userInputHandler} value={name}></input>
             </label>
             <br></br>
             <label>Product Price:
-                <input type="text" name="price" onChange={userInputHandler} value={price}></input>
+                <input type="number" name="price" onChange={userInputHandler} value={price}></input>
             </label>
             <br></br>
             <label>Seller ID:
-                <input type="text" name="sellerId" onChange={userInputHandler} value={sellerId}></input>
+                <input type="number" name="sellerId" onChange={userInputHandler} value={sellerId} step="1"></input>
             </label>
             <br></br>
             <button type="submit">Add</button>

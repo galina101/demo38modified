@@ -9,7 +9,6 @@ type ThemeProviderProps = {
     children: React.ReactNode;
 };
 
-
 export const ThemeContext = createContext<ThemeContextProps>({} as ThemeContextProps);
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {

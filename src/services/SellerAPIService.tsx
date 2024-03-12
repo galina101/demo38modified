@@ -11,7 +11,6 @@ export function getAllSellersAPI(){
         })
 }
 export async function postSeller(data:Seller){
-
     try {
         const response = await fetch(apiBaseURL + "seller", {
             method: "POST",

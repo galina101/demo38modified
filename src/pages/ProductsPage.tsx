@@ -3,8 +3,6 @@ import { ProductList } from "../components/product/ProductList";
 import { ProductSubmit } from "../components/product/ProductSubmit";
 import { ProductUpdate } from "../components/product/ProductUpdate";
 import {Product} from "../models/Product";
-import {ProductDelete} from "../components/product/ProductDelete";
-import{deleteProduct as deleteProductAPI}  from "../services/ProductAPIService";
 
 export function ProductsPage(){
    const [allProducts, setAllProducts] = React.useState<Product[]>([]);

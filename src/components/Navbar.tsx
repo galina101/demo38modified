@@ -6,18 +6,19 @@ export function Navbar(){
 
     return (
         <>
-            <br></br>
+            <div className="dark-theme-toggle">
             <button onClick={toggleTheme}>
                 Switch to {theme === 'light' ? 'dark' : 'light'} mode
             </button>
-            <br></br>
-            <br></br>
+            </div>
+
+            <div className="navbar">
             <Link to='products'>Products page</Link>
             <br></br>
             <Link to='sellers'>Sellers page</Link>
             <br></br>
             <Link to='landing'>Home page</Link>
-
+            </div>
         </>
     )
 }

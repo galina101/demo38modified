@@ -24,7 +24,7 @@ export function SingleProduct({product, data, updateAllProducts, toggleUpdate}:p
         toggleUpdate();
     }
     return (
-        <table className="seller-table">
+        <table className="product-table">
             <thead>
             <tr>
                 <th>Product ID</th>
@@ -50,9 +50,4 @@ export function SingleProduct({product, data, updateAllProducts, toggleUpdate}:p
             </tbody>
         </table>
     )
-
-    {/*<h2>{props.data.message_id}</h2>*/}
-    {/*<p style={{fontStyle:"italic"}}>{props.data.time_posted_epoch}</p>*/}
-    {/*<p>{props.data.message_text}</p>*/}
-    {/*<p>Current user is : {valueFromContext}</p>*/}
 }
