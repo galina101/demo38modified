@@ -37,7 +37,8 @@ export function ProductUpdate({updateAllProducts}:ProductSubmitProps){
             price:price,
             sellerId:sellerId
         }
-        await putProduct(product);
+        await putProduct(product)
+            .catch(error=>console.error('There was a problem with your PUT Product operation:'+ error.message));;
         //wait for the post to complete, then refresh the list
         const response = await getAllProductsAPI();
         const updatedProducts = await response.json();

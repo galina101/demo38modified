@@ -10,18 +10,31 @@ export function getAllSellersAPI(){
             return response;
         })
 }
-export function postSeller(data:Seller){
-    return fetch(apiBaseURL + "seller",
-    {method:"POST",
-    mode:"cors",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify(data)});
-}
+export async function postSeller(data:Seller){
 
-export function updateSeller(data:Seller){
-    return fetch(apiBaseURL + "seller",
-        {method:"PUT",
-            mode:"cors",
-            headers:{"Content-Type":"application/json"},
-            body:JSON.stringify(data)});
+    try {
+        const response = await fetch(apiBaseURL + "seller", {
+            method: "POST",
+            mode: "cors",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(data)
+        });
+        if (!response.ok) {
+            const errorBody = await response.text();
+            throw new Error(`${response.status} ${errorBody}`);
+        }
+        return response.json();
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+        //console.error('There was a problem with your POST seller operation:', error.message);
+        if (error.message.includes ("400")) {
+            alert(error.message);
+        }
+        } else {
+        console.error ('An unknown error occurred:', error);
+        }
+            throw error;
+        }
+
+
 }

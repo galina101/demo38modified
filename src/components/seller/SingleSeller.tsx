@@ -5,7 +5,7 @@ interface propsInterface {
     data:Seller
 }
 export function SingleSeller(props:propsInterface){
-    const valueFromContext = useContext(UserContext)
+    const valueFromContext = useContext(UserContext);
     return (
         <table className="seller-table">
             <thead>

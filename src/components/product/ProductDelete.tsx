@@ -7,7 +7,8 @@ interface ProductSubmitProps{
     deleteProduct: (product:Product)=>void;
 }
 export async function deleteProductWithRefresh(product: Product, updateAllProducts: (newProducts: Product[]) => void){
-    await deleteProduct(product);
+    await deleteProduct(product)
+        .catch(error=>console.error('There was a problem with your DELETE operation:'+ error.message));
     //wait for the post to complete, then refresh the list
     const response = await getAllProductsAPI();
     const updatedProducts = await response.json();
